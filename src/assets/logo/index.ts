@@ -1,0 +1,1 @@
+export { default as StakeArt } from './stakeart.svg'
