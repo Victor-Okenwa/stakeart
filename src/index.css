@@ -169,4 +169,6 @@
   .whatsapp_input_container {
     @apply relative flex items-center w-full bg-transparent rounded-xl focus-within:ring-0 focus-within:ring-primary;
   }
+
+  
 }

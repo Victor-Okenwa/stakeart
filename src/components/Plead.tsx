@@ -21,7 +21,7 @@ import { Separator } from "./ui/separator";
 
 const Plead = ({ type, interest, duration, minAmount }: PleadProps) => {
   const [isLoading, setIsLoading] = useState(false);
-  const formSchema = pleadFormSchema(type, minAmount);
+  const formSchema = pleadFormSchema(type);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -31,7 +31,7 @@ const Plead = ({ type, interest, duration, minAmount }: PleadProps) => {
 
     setTimeout(() => {
       setIsLoading(false);
-      toast.success("Bid has been placed");
+      toast.success("Plead has been placed");
     }, 1000);
   };
 
@@ -45,62 +45,79 @@ const Plead = ({ type, interest, duration, minAmount }: PleadProps) => {
       <DialogContent>
         <DialogHeader>
           <DialogTitle>
-            Plead for {type === "stake" ? "Stake" : "to Collect"}
+            Plead  {type === "stake" ? "for Stake" : "to Collect"}
           </DialogTitle>
         </DialogHeader>
-          <Separator />
+        <Separator />
 
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(handleSubmit)}
             className="flex flex-col gap-5"
           >
-            <CustomFormSelect
-              control={form.control}
-              name={"interest"}
-              placeholder="Plead interest"
-              defaultOption={interest}
-              options={[
-                "1%",
-                "2%",
-                "3%",
-                "5%",
-                "10%",
-                "12%",
-                "20%",
-                "25%",
-                "50%",
-              ]}
-            />
+            {type === "stake" ? (
+              <>
+                <CustomFormSelect
+                  control={form.control}
+                  name={"interest"}
+                  placeholder="Plead interest"
+                  defaultOption={interest}
+                  options={[
+                    "1%",
+                    "2%",
+                    "3%",
+                    "5%",
+                    "10%",
+                    "12%",
+                    "20%",
+                    "25%",
+                    "50%",
+                  ]}
+                />
 
-            <CustomFormSelect
-              control={form.control}
-              name={"duration"}
-              placeholder="Plead duration"
-              defaultOption={duration}
-              options={[
-                "7 days",
-                "10 days",
-                "30 days",
-                "50 days",
-                "60 days",
-                "120 days",
-                "365 days",
-              ]}
-            />
+                <CustomFormSelect
+                  control={form.control}
+                  name={"duration"}
+                  placeholder="Plead duration"
+                  defaultOption={duration}
+                  options={[
+                    "7 days",
+                    "10 days",
+                    "30 days",
+                    "50 days",
+                    "60 days",
+                    "120 days",
+                    "365 days",
+                  ]}
+                />
 
-            <CustomFormField
-              control={form.control}
-              name="minAmount"
-              defaultValue={minAmount}
-              fieldType="number"
-              placeholder=""
-              inputClassName="text-center text-lg"
-            />
+                <CustomFormField
+                  control={form.control}
+                  name="minAmount"
+                  defaultValue={minAmount}
+                  fieldType="number"
+                  placeholder=""
+                  inputClassName="text-center text-lg"
+                />
+              </>
+            ) : (
+                <div className="flex flex-col gap-3">
+                  <p>
+                    &bull; You are not required to send any payments or transactions to owner.</p>
+                  <CustomFormField
+                    control={form.control}
+                    name="minAmount"
+                    defaultValue={minAmount}
+                    fieldType="number"
+                    placeholder=""
+                    inputClassName="text-center text-lg"
+                    disabled={true}
+                    hidden={true}
+                  />
+                </div>
+            )}
 
-            {/* Solve  Expected number, received string on type number fields */}
-
-            <SubmitButton child="Make Plea" isLoading={isLoading} />
+            <SubmitButton child={"Make Plea"} isLoading={isLoading} />
           </form>
         </Form>
       </DialogContent>

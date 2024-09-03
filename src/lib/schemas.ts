@@ -1,13 +1,17 @@
 import { z } from 'zod'
 
-export const bidFormSchema = (minBid: number) =>
+export const bidFormSchema = () =>
     z.object({
-        bidAmount: z.number().min(minBid, { message: "Your bid cannot be less than the minimum bid" }),
+        bidAmount: z.string().refine((val) => !Number.isNaN(parseInt(val, 10)), {
+            message: "Expected number, received a string"
+        }),
     });
 
-export const pleadFormSchema = (type: 'stake' | 'collect', minAmount?: number) =>
+export const pleadFormSchema = (type: 'stake' | 'collect') =>
     z.object({
         interest: type === 'stake' ? z.string() : z.string().optional(),
         duration: type === 'stake' ? z.string() : z.string().optional(),
-        minAmount: type === 'stake' ? z.number().min(minAmount || 0, { message: "Your plead amount cannot go below the minimum amount" }) : z.number().optional(),
+        minAmount: type === 'stake' ? z.string().refine((val) => !Number.isNaN(parseInt(val, 10)), {
+            message: "Expected number, received a string"
+        }) : z.string().optional(),
     });

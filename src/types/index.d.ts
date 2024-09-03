@@ -29,6 +29,8 @@ declare interface CustomFormFieldProps {
   isPasswordVisible?: boolean;
   defaultValue?: string | number;
   fieldType?: React.HTMLInputTypeAttribute;
+  hidden?: boolean;
+  disabled?: boolean;
 }
 
 declare interface CustomFormSelectProps
@@ -58,6 +60,13 @@ declare interface StakeCardProps {
   title: string;
   minInterest: string;
   maxAllowableDuration: string;
+}
+
+declare interface CollectCardProps {
+  id: string;
+  avatar: string;
+  owner: string;
+  title: string;
 }
 declare interface TooltipInfoProps {
   trigger?: string | JSX.Element;

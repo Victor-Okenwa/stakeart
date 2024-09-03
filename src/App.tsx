@@ -15,17 +15,19 @@ import Auction from "./pages/auctions/Auction";
 import Stakes from "./pages/stakes/Stakes";
 import Stake from "./pages/stakes/Stake";
 import { Toaster } from "sonner";
+import Collectibles from "./pages/collectibles/Collectibles";
+import Collectible from "./pages/collectibles/Collectible";
 
 // 1. Your WalletConnect Cloud project ID
 const projectId = "7a094e114d5bcd22031585b7b9c5ad5d";
 
 // 2. Set chains
 const mainnet = {
-  chainId: 1,
-  name: "Ethereum",
-  currency: "ETH",
-  explorerUrl: "https://etherscan.io",
-  rpcUrl: "https://cloudflare-eth.com",
+  chainId: 42421,
+  name: "Asset Chain Testnet",
+  currency: "RWA",
+  explorerUrl: "https://testnet.assetchain.org/",
+  rpcUrl: "https://enugu-rpc.assetchain.org/",
 };
 
 // 3. Create a metadata object
@@ -46,7 +48,7 @@ const ethersConfig = defaultConfig({
   enableInjected: true, // true by default
   enableCoinbase: true, // true by default
   rpcUrl: "...", // used for the Coinbase SDK
-  defaultChainId: 1, // used for the Coinbase SDK
+  defaultChainId: 42421, // used for the Coinbase SDK
 });
 
 // 5. Create a Web3Modal instance
@@ -88,13 +90,16 @@ function App() {
               <Route path="stakes" element={<Stakes />} />
               <Route path="stakes/:id" element={<Stake />} />
 
+              <Route path="collectibles" element={<Collectibles />} />
+              <Route path="collectibles/:id" element={<Collectible />} />
+
               <Route path="withdraw" element={<Withdraw />} />
               <Route path="add-fund" element={<AddFund />} />
               <Route path="swap" element={<Swap />} />
               <Route path="profile" element={<Profile />} />
             </Route>
-            </Routes>
-            <Toaster />
+          </Routes>
+          <Toaster />
         </Router>
       )}
     </div>

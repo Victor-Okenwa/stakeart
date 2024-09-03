@@ -17,7 +17,9 @@ const CustomFormField = ({
   isPasswordVisible,
   placeholder,
   defaultValue = "",
-  fieldType="text",
+  fieldType = "text",
+  hidden = false,
+  disabled = false,
 }: CustomFormFieldProps) => {
   const isWhatsAppField = name === "phone";
   const isIdField = name === "id";
@@ -26,15 +28,16 @@ const CustomFormField = ({
       control={control}
       name={name}
       defaultValue={defaultValue}
+      disabled={disabled}
       render={({ field }) => (
-        <FormItem className="form-item" hidden={isIdField}>
+        <FormItem className="form-item" hidden={isIdField || hidden}>
           <div className="flex w-full gap-1 flex-col bg-secondary ring-2 ring-secondary rounded-lg p-1 focus-within:bg-primary-foreground">
             {label && (
               <FormLabel className="text-xs text-destructive capitalize">
                 {label}
               </FormLabel>
             )}
-            <FormControl hidden={isIdField}>
+            <FormControl hidden={isIdField || hidden}>
               {isWhatsAppField ? (
                 <div className="whatsapp_input_container">
                   <div className=" inset-y-0 left-0 flex items-center">
@@ -58,8 +61,6 @@ const CustomFormField = ({
                 <Input
                   className={cn("input_field", inputClassName)}
                   placeholder={placeholder}
-                  disabled={isIdField}
-                  hidden={isIdField}
                   {...field}
                   type={
                     name === "password" && isPasswordVisible

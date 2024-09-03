@@ -1,7 +1,6 @@
 import { MicInBg } from "@/assets/images";
 import Plead from "@/components/Plead";
 import TooltipInfo from "@/components/TooltipInfo";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Topbar from "@/layouts/Topbar";
 import { Link } from "react-router-dom";
 
