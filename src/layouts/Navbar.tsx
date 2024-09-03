@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
   return (
-    <nav className="sticky bottom-0 bg-popover py-6 px-4">
+    <nav className="sticky bottom-0 bg-popover py-6 px-4 mt-px">
       <ul className="nav-items">
         {NavigationLinks.map((link) => (
           <li className="nav-item">

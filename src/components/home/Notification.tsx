@@ -12,13 +12,6 @@ import NotificationItem from "./NotificationItem";
 import { Button } from "../ui/button";
 import { useState } from "react";
 
-declare interface Notification {
-  id: string;
-  avatar?: string;
-  message: string;
-  isRead: boolean;
-}
-
 const Notification = () => {
   const notificationsData: Notification[] = [
     {

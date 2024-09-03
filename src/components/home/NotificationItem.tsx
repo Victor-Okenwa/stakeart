@@ -1,18 +1,10 @@
-import React from "react";
 import { CommandItem } from "../ui/command";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 import { Ellipsis, Trash } from "lucide-react";
 import { Button } from "../ui/button";
 import { cn } from "@/lib/utils";
-interface NotificationItemProps {
-  notification: {
-    id: string;
-    avatar?: string;
-    message: string;
-    isRead: boolean;
-  };
-}
+
 const NotificationItem = ({ notification }: NotificationItemProps) => {
   return (
     <CommandItem

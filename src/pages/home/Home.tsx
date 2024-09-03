@@ -1,16 +1,16 @@
 import { BadgeDollarSign, BarChart2, Gavel, Gem, Timer } from "lucide-react";
-import ClientInfo from "../components/home/ClientInfo";
-import { Button } from "../components/ui/button";
+import ClientInfo from "@/components/home/ClientInfo";
+import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { FaBox } from "react-icons/fa6";
-import ActiveBids from "../components/home/ActiveBids";
+import ParticaipatedBids from "@/components/home/ParticaipatedBids";
 
 const Home = () => {
   const gridButtons = [
     {
-      label: "stake",
+      label: "stakes",
       icon: BadgeDollarSign,
-      href: "/stake",
+      href: "/stakes",
     },
     {
       label: "auctions",
@@ -39,7 +39,7 @@ const Home = () => {
     },
   ];
   return (
-    <main className="flex flex-col gap-12">
+    <main className="flex flex-col gap-5">
       <ClientInfo />
 
       <section className="grid grid-cols-3 grid-rows-3 px-4 gap-3">
@@ -61,7 +61,7 @@ const Home = () => {
         ))}
       </section>
 
-      <ActiveBids />
+      <ParticaipatedBids />
     </main>
   );
 };

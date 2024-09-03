@@ -1,4 +1,4 @@
-import { ArrowUpDown, Eye, EyeOff, GalleryVertical } from "lucide-react";
+import { ArrowUpDown, Eye, EyeOff, Images } from "lucide-react";
 import { useState } from "react";
 import { Button } from "../ui/button";
 import { convertToReadableNumber } from "../../lib/utils";
@@ -11,6 +11,8 @@ import {
   TooltipTrigger,
 } from "../ui/tooltip";
 import { Link } from "react-router-dom";
+import ConnectWallet from "./ConnectWallet";
+import ConnectButton from "../ConnectButton";
 
 const ClientInfo = () => {
   const [isBalanceVisible, setIsBalanceVisible] = useState(false);
@@ -19,7 +21,9 @@ const ClientInfo = () => {
   const RWABalance = 27800;
   return (
     <section className="shadow-xl text-secondary bg-purple rounded-b-3xl py-10 px-4 flex justify-between items-center">
+      {/* <ConnectWallet /> */}
       <div className="flex flex-col ">
+
         <div className="flex gap-1">
           <span className="text-[11px]">Available Balance</span>
           <Button
@@ -52,8 +56,9 @@ const ClientInfo = () => {
             </div>
           )}
         </div>
+        <ConnectButton />
 
-        <Button
+        {/* <Button
           variant={"gold"}
           size={"icon"}
           className="px-2 py-1 w-fit h-fit"
@@ -62,7 +67,7 @@ const ClientInfo = () => {
           }
         >
           <ArrowUpDown size={18} />
-        </Button>
+        </Button> */}
       </div>
 
       <div className="flex flex-col items-center justify-between gap-10">
@@ -72,7 +77,7 @@ const ClientInfo = () => {
           <Tooltip>
             <TooltipTrigger>
               <Link to="/gallery">
-                <GalleryVertical />
+                <Images />
               </Link>
             </TooltipTrigger>
 
