@@ -1,5 +1,5 @@
 import { ArrowUpDown, Eye, EyeOff, Images } from "lucide-react";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Button } from "../ui/button";
 import { convertToReadableNumber } from "../../lib/utils";
 import { RiAsterisk } from "react-icons/ri";
@@ -13,17 +13,18 @@ import {
 import { Link } from "react-router-dom";
 import ConnectWallet from "./ConnectWallet";
 import ConnectButton from "../ConnectButton";
+import { useStoreState } from "@/store/store";
+import { AppContext } from "@/context/AppContext";
 
 const ClientInfo = () => {
   const [isBalanceVisible, setIsBalanceVisible] = useState(false);
   const [balanceType, setBalanceType] = useState<"usdt" | "rwa">("rwa");
-  const USDTBalance = 4000;
-  const RWABalance = 27800;
+
+  const { balance } = useContext(AppContext);
   return (
     <section className="shadow-xl text-secondary bg-purple rounded-b-3xl py-10 px-4 flex justify-between items-center">
       {/* <ConnectWallet /> */}
       <div className="flex flex-col ">
-
         <div className="flex gap-1">
           <span className="text-[11px]">Available Balance</span>
           <Button
@@ -38,11 +39,7 @@ const ClientInfo = () => {
         <div className="h-10">
           {isBalanceVisible ? (
             <div className="flex items-baseline gap-px">
-              <span className="text-3xl">
-                {convertToReadableNumber(
-                  balanceType === "usdt" ? USDTBalance : RWABalance
-                )}
-              </span>
+              <span className="text-3xl">{parseFloat(balance)}</span>
               <span className="uppercase text-[10px]">{balanceType}</span>
             </div>
           ) : (

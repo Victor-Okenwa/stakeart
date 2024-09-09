@@ -8,6 +8,7 @@ import {
 
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
+import { Textarea } from "../ui/textarea";
 
 const CustomFormField = ({
   control,
@@ -15,13 +16,14 @@ const CustomFormField = ({
   label = "",
   inputClassName = "",
   isPasswordVisible,
+  inputType = "input",
   placeholder,
   defaultValue = "",
   fieldType = "text",
   hidden = false,
   disabled = false,
+  accepts = "",
 }: CustomFormFieldProps) => {
-  const isWhatsAppField = name === "phone";
   const isIdField = name === "id";
   return (
     <FormField
@@ -33,30 +35,11 @@ const CustomFormField = ({
         <FormItem className="form-item" hidden={isIdField || hidden}>
           <div className="flex w-full gap-1 flex-col bg-secondary ring-2 ring-secondary rounded-lg p-1 focus-within:bg-primary-foreground">
             {label && (
-              <FormLabel className="text-xs text-destructive capitalize">
-                {label}
-              </FormLabel>
+              <FormLabel className="text-sm capitalize">{label}</FormLabel>
             )}
             <FormControl hidden={isIdField || hidden}>
-              {isWhatsAppField ? (
-                <div className="whatsapp_input_container">
-                  <div className=" inset-y-0 left-0 flex items-center">
-                    <span className="text-white bg-primary rounded-xl px-3 py-2 ">
-                      +234
-                    </span>
-                  </div>
-                  <Input
-                    type="tel"
-                    name={name}
-                    placeholder={placeholder}
-                    value={field.value || ""}
-                    onChange={field.onChange}
-                    className={cn(
-                      "input_field ml-2 border-none focus-visible:ring-0 bg-transparent",
-                      inputClassName
-                    )}
-                  />
-                </div>
+              {inputType === "textarea" ? (
+                <Textarea  />
               ) : (
                 <Input
                   className={cn("input_field", inputClassName)}
@@ -71,6 +54,7 @@ const CustomFormField = ({
                   }
                   value={field.value || ""}
                   onChange={field.onChange}
+                  accepts={accepts}
                 />
               )}
             </FormControl>

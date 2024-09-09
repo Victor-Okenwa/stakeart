@@ -13,7 +13,7 @@ import { Button } from "../ui/button";
 import { useState } from "react";
 
 const Notification = () => {
-  const notificationsData: Notification[] = [
+  const notificationsData: NotificationType[] = [
     {
       id: "13452-781eve718287-61723g617",
       avatar: GuitarHand,

@@ -1,25 +1,49 @@
 import { UserCircle } from "lucide-react";
 import ReduceString from "./ReduceString";
 import { Button } from "./ui/button";
-import { useWeb3Modal, useWeb3ModalAccount, useWeb3ModalEvents } from "@web3modal/ethers/react";
-
+import {
+  useWeb3Modal,
+  useWeb3ModalAccount,
+  useWeb3ModalEvents,
+  useWeb3ModalProvider,
+} from "@web3modal/ethers/react";
+import { BrowserProvider, Contract, ethers, formatUnits } from "ethers";
+import { useContext, useEffect, useState } from "react";
+import { useStoreActions } from "@/store/store";
+import { AppContext } from "@/context/AppContext";
 export default function ConnectButton() {
-  const { open} = useWeb3Modal();
-  const { isConnected, status } = useWeb3ModalAccount();
+  const { open } = useWeb3Modal();
+  const { isConnected, address } = useWeb3ModalAccount();
+  // const [balance, setBalance] = useState("0.00");
 
-  
+  const { setBalance } = useContext(AppContext);
+
+  useEffect(() => {
+    async function getBalance() {
+      if (isConnected) {
+        const provider = new ethers.JsonRpcProvider(
+          "https://enugu-rpc.assetchain.org/"
+        );
+
+        const balanceBigNumber = await provider.getBalance(address);
+        const balanceEther = ethers.formatEther(balanceBigNumber);
+
+        setBalance(balanceEther);
+      }
+    }
+
+    getBalance();
+  }, []);
+
   return (
     <>
-      {status}
       {isConnected ? (
         <Button
           variant="transparent"
           size={"no-pad"}
           onClick={() => open({ view: "Account" })}
-          asChild
         >
           <UserCircle className="cursor-pointer" />
-          {/* {status} */}
         </Button>
       ) : (
         <Button

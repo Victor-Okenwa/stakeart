@@ -17,6 +17,10 @@ import Stake from "./pages/stakes/Stake";
 import { Toaster } from "sonner";
 import Collectibles from "./pages/collectibles/Collectibles";
 import Collectible from "./pages/collectibles/Collectible";
+import Gallery from "./pages/gallery/Gallery";
+import GalleryOutlet from "./outlets/GalleryOutlet";
+import MintAsset from "./pages/gallery/MintAsset";
+import MakeCollectible from "./pages/gallery/MakeCollectible";
 
 // 1. Your WalletConnect Cloud project ID
 const projectId = "7a094e114d5bcd22031585b7b9c5ad5d";
@@ -97,6 +101,12 @@ function App() {
               <Route path="add-fund" element={<AddFund />} />
               <Route path="swap" element={<Swap />} />
               <Route path="profile" element={<Profile />} />
+            </Route>
+
+            <Route path="/gallery" element={<GalleryOutlet />}>
+              <Route path="home" element={<Gallery />} />
+              <Route path="mint" element={<MintAsset />} />
+              <Route path="home/make-collectible" element={<MakeCollectible />} />
             </Route>
           </Routes>
           <Toaster />

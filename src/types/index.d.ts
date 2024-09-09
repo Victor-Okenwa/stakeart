@@ -1,4 +1,4 @@
-declare interface Notification {
+declare interface NotificationType {
   id: string;
   avatar?: string;
   message: string;
@@ -26,11 +26,13 @@ declare interface CustomFormFieldProps {
   placeholder?: string;
   label?: string;
   inputClassName?: ClassValue;
+  inputType?: 'input' | 'textarea';
   isPasswordVisible?: boolean;
   defaultValue?: string | number;
   fieldType?: React.HTMLInputTypeAttribute;
   hidden?: boolean;
   disabled?: boolean;
+  accepts?: string;
 }
 
 declare interface CustomFormSelectProps
@@ -88,3 +90,9 @@ declare interface SubmitButtonProps {
   isLoading: boolean;
 }
 
+declare interface GalleryCardProps {
+  id: string;
+  avatar: string;
+  type: 'gallery' | 'auction' | 'stake' | 'collectible' | 'exhibition';
+  date?: string;
+}

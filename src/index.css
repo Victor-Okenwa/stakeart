@@ -102,13 +102,7 @@
   .nav-items .nav-item a svg {
     @apply size-6;
   }
-  .nav-items .nav-item a.active svg {
-    @apply size-7;
-  }
-  .nav-items .nav-item a.active span {
-    @apply hidden;
-  }
-  /* HTML: <div class="loader"></div> */
+
   .my-loader {
     width: 50px;
     height: 28px;
@@ -164,11 +158,9 @@
     }
   }
   .input_field {
-    @apply flex gap-6 w-full h-6 border-0 bg-transparent rounded-xl p-0 text-black outline-primary;
+    @apply flex gap-6 w-full h-6 border-0 bg-transparent rounded-xl p-0 text-primary outline-primary focus-visible:ring-0  focus-visible:ring-offset-0 focus-visible:border-0 focus-visible:outline-none;
   }
   .whatsapp_input_container {
     @apply relative flex items-center w-full bg-transparent rounded-xl focus-within:ring-0 focus-within:ring-primary;
   }
-
-  
 }

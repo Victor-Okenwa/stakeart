@@ -1,11 +1,12 @@
-import { NavigationLinks } from "../constants";
+import { GalleryNavigationLinks, NavigationLinks } from "../constants";
 import { NavLink } from "react-router-dom";
 
-const Navbar = () => {
+const Navbar = ({ type = "app" }: { type?: "gallery" | "app" }) => {
+  const Links = type === "gallery" ? GalleryNavigationLinks : NavigationLinks;
   return (
-    <nav className="sticky bottom-0 bg-popover py-6 px-4 mt-px">
+    <nav className={"sticky bottom-0 bg-popover py-6 px-4 mt-px"}>
       <ul className="nav-items">
-        {NavigationLinks.map((link) => (
+        {Links.map((link) => (
           <li className="nav-item">
             <NavLink
               to={link.href}
