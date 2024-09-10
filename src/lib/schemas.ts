@@ -37,4 +37,13 @@ export const mintFormSchema = () =>
             .refine((file) => file?.type === "image/jpg", {
                 message: "Only jpg files are allowed.",
             }),
-    })
+    });
+
+export const auctionAssetFormSchema = () =>
+    z.object({
+        minBid: z.string().refine((val) => !Number.isNaN(parseInt(val, 10)), {
+            message: "Expected number"
+        }).optional(),
+        exhibit: z.string().optional(),
+        duration: z.string()
+    });

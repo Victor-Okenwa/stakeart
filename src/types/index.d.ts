@@ -32,6 +32,7 @@ declare interface CustomFormFieldProps {
   fieldType?: React.HTMLInputTypeAttribute;
   hidden?: boolean;
   disabled?: boolean;
+  readOnly?: boolean;
   accepts?: string;
 }
 
@@ -39,6 +40,11 @@ declare interface CustomFormSelectProps
   extends Omit<CustomFormFieldProps, "isPasswordVisible"> {
   defaultOption?: string;
   options: string[];
+}
+
+declare interface CustomDateTimeFieldProps extends Omit<CustomFormFieldProps, 'isPasswordVisible'> {
+  min?: string;
+  max?: string;
 }
 
 declare interface LoaderProps {

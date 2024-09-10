@@ -21,6 +21,7 @@ import Gallery from "./pages/gallery/Gallery";
 import GalleryOutlet from "./outlets/GalleryOutlet";
 import MintAsset from "./pages/gallery/MintAsset";
 import MakeCollectible from "./pages/gallery/MakeCollectible";
+import AuctionAsset from "./pages/gallery/AuctionAsset";
 
 // 1. Your WalletConnect Cloud project ID
 const projectId = "7a094e114d5bcd22031585b7b9c5ad5d";
@@ -105,8 +106,13 @@ function App() {
 
             <Route path="/gallery" element={<GalleryOutlet />}>
               <Route path="home" element={<Gallery />} />
+              <Route path="asset/auction-asset/:id" element={<AuctionAsset />} />
+
               <Route path="mint" element={<MintAsset />} />
-              <Route path="home/make-collectible" element={<MakeCollectible />} />
+              <Route
+                path="home/make-collectible"
+                element={<MakeCollectible />}
+              />
             </Route>
           </Routes>
           <Toaster />
