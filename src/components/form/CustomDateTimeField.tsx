@@ -57,8 +57,8 @@ const CustomDateTimeField = ({
                 />
               </FormControl>
             </div>
-            <FormMessage className="form-message" />
           </div>
+            <FormMessage className="form-message" />
         </FormItem>
       )}
     />

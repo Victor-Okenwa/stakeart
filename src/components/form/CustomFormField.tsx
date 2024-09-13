@@ -35,7 +35,7 @@ const CustomFormField = ({
         <FormItem className="form-item" hidden={isIdField || hidden}>
           <div className="flex w-full gap-1 flex-col bg-secondary ring-2 ring-secondary rounded-lg p-1 focus-within:bg-primary-foreground">
             {label && (
-              <FormLabel className="text-sm capitalize">{label}</FormLabel>
+              <FormLabel className="text-xs capitalize">{label}</FormLabel>
             )}
             <FormControl hidden={isIdField || hidden}>
               {inputType === "textarea" ? (

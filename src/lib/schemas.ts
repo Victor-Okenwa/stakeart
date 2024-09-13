@@ -1,4 +1,3 @@
-import { description } from '@/components/ArtChart';
 import { z } from 'zod'
 
 export const bidFormSchema = () =>
@@ -43,7 +42,17 @@ export const auctionAssetFormSchema = () =>
     z.object({
         minBid: z.string().refine((val) => !Number.isNaN(parseInt(val, 10)), {
             message: "Expected number"
-        }).optional(),
-        exhibit: z.string().optional(),
-        duration: z.string()
+        }),
+
+        exhibition: z.coerce.date().min(new Date(), { message: "Cannot parse date less than now" }),
+        duration: z.coerce.date().min(new Date(), { message: "Cannot parse date less than now" })
+    });
+
+export const stakeAssetFormSchema = () =>
+    z.object({
+        interest: z.string(),
+        duration: z.coerce.date().min(new Date(), { message: "Cannot parse date less than now" }),
+        minAmount: z.string().refine((val) => !Number.isNaN(parseInt(val, 10)), {
+            message: "Expected number"
+        }),
     });

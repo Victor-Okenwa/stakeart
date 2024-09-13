@@ -19,12 +19,20 @@ const MintAsset = () => {
 
   const avatarRef = form.register("avatar");
 
+  const handleSubmit = () => {
+    setIsLoading(true);
+
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+  };
+
   return (
     <main>
       <Topbar text="Mint Asset" />
 
       <Form {...form}>
-        <form className="p-4 flex flex-col gap-4">
+        <form className="p-4 flex flex-col gap-4" onSubmit={form.handleSubmit(handleSubmit)}>
           <CustomFormField
             control={form.control}
             name="title"
@@ -88,7 +96,11 @@ const MintAsset = () => {
             />
             <label htmlFor="accepted">Accept terms and conditions</label>
           </div>
-          <Button disabled={!isAccepted || isLoading} variant={"purple"} className="mt-10">
+          <Button
+            disabled={!isAccepted || isLoading}
+            variant={"purple"}
+            className="mt-10"
+          >
             {isLoading ? <Loader type="all" /> : "Mint"}
           </Button>
         </form>

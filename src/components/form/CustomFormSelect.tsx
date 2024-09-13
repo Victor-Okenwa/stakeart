@@ -34,7 +34,7 @@ const CustomFormSelect = ({
               onValueChange={field.onChange}
               value={field.value || defaultValue || defaultOption}
             >
-              <FormLabel className="text-xs text-destructive capitalize">
+              <FormLabel className="text-xs font-bold capitalize">
                 {label || splitCamelCaseToWords(name)}
               </FormLabel>
               <SelectTrigger className="text-gray-500 bg-transparent border-none p-0 h-auto focus:ring-0 focus:ring-offset-0">

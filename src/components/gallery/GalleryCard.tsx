@@ -22,11 +22,11 @@ import { auctionAssetFormSchema } from "@/lib/schemas";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Form, FormControl, FormField, FormItem, FormLabel } from "../ui/form";
+import { Form } from "../ui/form";
 import CustomFormField from "../form/CustomFormField";
-import { Input } from "../ui/input";
 import CustomDateTimeField from "../form/CustomDateTimeField";
 import { useState } from "react";
+import CustomFormSelect from "../form/CustomFormSelect";
 
 const GalleryCard = ({ id, avatar, date, type }: GalleryCardProps) => {
   const auctionFormSchema = auctionAssetFormSchema();
@@ -34,11 +34,12 @@ const GalleryCard = ({ id, avatar, date, type }: GalleryCardProps) => {
     resolver: zodResolver(auctionFormSchema),
   });
 
+  const stakeFormSchema = auctionAssetFormSchema();
+  const stakeForm = useForm<z.infer<typeof stakeFormSchema>>({
+    resolver: zodResolver(stakeFormSchema),
+  });
+
   const dateTime = new Date(date ?? "");
-
-  const now = new Date();
-
-  const [dateValue, setDateValue] = useState("");
 
   const titleSwitch = (type: "auction" | "stake" | "collectible") => {
     switch (type) {
@@ -56,7 +57,32 @@ const GalleryCard = ({ id, avatar, date, type }: GalleryCardProps) => {
     }
   };
 
+  const handleAuctionFormSubmit = () => {};
+  const handleStakeFormSubmit = () => {};
+  const handleCollectibleFormSubmit = () => {};
+
   const dialogFormat = (type: "auction" | "stake" | "collectible") => {
+    const currentForm = type === "auction" ? auctionForm : stakeForm;
+    const interests = [
+      "0.5%",
+      "1%",
+      "2%",
+      "3%",
+      "5%",
+      "10%",
+      "12%",
+      "15%",
+      "20%",
+      "25%",
+      "30%",
+      "35%",
+      "40%",
+      "45%",
+      "50%",
+      "60%",
+      "70%",
+    ];
+
     return (
       <Dialog>
         <DialogTrigger className="p-1 hover:bg-primary hover:text-secondary">
@@ -74,39 +100,83 @@ const GalleryCard = ({ id, avatar, date, type }: GalleryCardProps) => {
           </DialogHeader>
 
           <CardFooter className="bg-accent border-t border-t-primary/20 py-3">
-            <Form {...auctionForm}>
-              <form className="flex flex-col gap-5 w-full">
-                <div className="flex w-full flex-1">
-                  <div className="text-sm mt-auto p-2 bg-purple text-popover">
-                    RWA
+            <Form {...currentForm}>
+              <form
+                onSubmit={currentForm.handleSubmit(
+                  type === "auction"
+                    ? handleAuctionFormSubmit
+                    : type === "stake"
+                    ? handleStakeFormSubmit
+                    : handleCollectibleFormSubmit
+                )}
+                className="flex flex-col gap-5 w-full"
+              >
+                {type === "stake" && (
+                  <CustomFormSelect
+                    control={stakeForm.control}
+                    name="interest"
+                    options={interests}
+                    placeholder="Money you are willing to give back"
+                  />
+                )}
+
+                {type !== "collectible" && (
+                  <div className="flex w-full flex-1">
+                    <div className="text-sm mt-auto p-2 bg-purple text-popover">
+                      RWA
+                    </div>
+                    <div className="flex-grow">
+                      <CustomFormField
+                        control={currentForm.control}
+                        name={type === "auction" ? "minBid" : "minAmount"}
+                        label={
+                          type === "auction" ? "minimum bid" : "minimum amount"
+                        }
+                        placeholder="Input number here"
+                        inputClassName="px-2 py-1.5 h-7 flex-grow"
+                      />
+                    </div>
                   </div>
-                  <div className="flex-grow">
-                    <CustomFormField
+                )}
+                {type !== "collectible" && (
+
+                  <CustomDateTimeField
+                    control={currentForm.control}
+                    name="duration"
+                    label="duration"
+                    min={"2018-06-07T00:00"}
+                    defaultValue={"2024-09-09T09:00:00"}
+                  />
+
+                )}
+
+                {type === "auction" && (
+                  <div className="flex flex-col">
+                    <p className="text-xs text-primary/60">
+                      Optionally you can put your art on exhibition to prepare
+                      users for auction
+                    </p>
+                    <CustomDateTimeField
                       control={auctionForm.control}
-                      name="minBid"
-                      label="minimum bid"
-                      placeholder="Input number here"
-                      inputClassName="px-2 py-1.5 h-7 flex-grow"
+                      name="exhibition"
+                      label="exhibition"
+                      min={"2018-06-07T00:00"}
+                      defaultValue={"2024-09-09T09:00:00"}
                     />
                   </div>
-                </div>
+                )}
 
-                <CustomDateTimeField
-                  control={auctionForm.control}
-                  name="duration"
-                  label="duration"
-                  // min={""}
-                  defaultValue={"2024-09-09T09:00:00"}
-                />
-
-                <input
-                  type="datetime-local"
-                  onChange={(e) => console.log(e.currentTarget.value)}
-                  name=""
-                  value={"2024-09-09T09:00:00"}
-                  min={"2024-09-09T09:00:00"}
-                  id=""
-                />
+                <Button
+                  variant={
+                    type === "auction"
+                      ? "purple"
+                      : type === "stake"
+                      ? "gold"
+                      : undefined
+                  }
+                >
+                  Confirm
+                </Button>
               </form>
             </Form>
           </CardFooter>
