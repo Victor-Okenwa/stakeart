@@ -1,4 +1,30 @@
-# React + TypeScript + Vite
+![StakeArt](./src/assets/logo/stakeart.svg)
+
+# STAKEART
+ Stakeart is an application that aims to bridge the gap between Art investors and Art sellers, and between Tangible Artworks and the web3 space. It aims to restore the value of Non-Fungible Tokens (NFTs) through REAL-WORD asset affiliation. 
+
+### Key Features
+- Staking
+- Re-Auction
+- Collection
+- Gallery
+-  Asset Minting
+-  Art exhibition
+
+ ### Structure (how it works)
+  > The Auction system of the software is based on a Discretionary auction system were the `Auctioneer` has full rights to choose any bidder. Auctions has a duration define d by the `Auctioneer`.
+
+  > The staking feature of the app is defined by the agreement [contract] between the `Client` and the `Staker` based on the duration of staking, minimum accepted amount and interest (pay back). If the`Staker` agrees with a `Client` a contract is immediately signed and `Client` has access to `Auction` the art within the duration.
+
+  > The Collectible feature of the app is a shareable feature. Here the `Owner` puts art on exhibition for free and can accept one of any `Collector` that pleads for the art. Once the `Owner` signs with a `Collector` access rights are transferred to the `Collector` but the `Owner` has a 1%/Number of collectives on any auction on the art.
+
+
+
+### View demo
+View demo: [Stakeart Preview](https://stakeart.vercel.app/)
+
+## Installation and Usage
+### React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
