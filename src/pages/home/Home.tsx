@@ -23,19 +23,19 @@ const Home = () => {
       href: "/collectibles",
     },
     {
-      label: "ancticipaion",
+      label: "exhibitions",
       icon: Timer,
-      href: "/collectibles",
+      href: "/exhibitions",
     },
     {
       label: "elites",
       icon: Gem,
-      href: "/collectibles",
+      href: "/elites",
     },
     {
       label: "leaderboards",
       icon: BarChart2,
-      href: "/collectibles",
+      href: "/leaderboards",
     },
   ];
   return (

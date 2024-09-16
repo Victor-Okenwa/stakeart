@@ -15,9 +15,13 @@ declare interface Auction {
   name: string;
   auctioneer: string;
   date: string | Date;
-  currentBid: number;
+  currentBid?: number;
   minBid: number;
-  yourBid: number;
+  yourBid?: number;
+}
+
+declare interface AuctionCardProps extends Auction {
+  type?: 'auction' | 'exhibition';
 }
 
 declare interface CustomFormFieldProps {
@@ -101,4 +105,9 @@ declare interface GalleryCardProps {
   avatar: string;
   type: 'gallery' | 'auction' | 'stake' | 'collectible' | 'exhibition';
   date?: string;
+}
+
+declare interface ArtChartProps {
+  numberOfAuctions: number;
+  numberOfOwners: number;
 }

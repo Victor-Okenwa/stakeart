@@ -7,25 +7,25 @@ import {
   CardTitle,
 } from "./ui/card";
 import { Link } from "react-router-dom";
-import { GuitarHand } from "@/assets/images";
 import Countdown from "./Countdown";
 import ReduceString from "./ReduceString";
 import { convertToReadableNumber } from "@/lib/utils";
 
 const AuctionCard = ({
+  type = "auction",
   id,
   avatar,
   name,
   auctioneer,
   date,
-  currentBid,
+  currentBid = 0,
   minBid,
-  yourBid,
-}: Auction) => {
+  yourBid = 0,
+}: AuctionCardProps) => {
   const auctionDate = new Date(date);
 
   return (
-    <Link to={"/auctions/" + id}>
+    <Link to={`/${type}s/${id}`}>
       <Card className="p-0">
         <CardContent className="flex p-2 items-center justify-between">
           <CardHeader className="flex flex-row gap-4 p-0">
@@ -41,11 +41,15 @@ const AuctionCard = ({
           </CardHeader>
 
           <CardFooter className="p-0 flex flex-col h-full basis-[50%] items-end">
-            <p className="text-green-500 mb-auto text-xs">
-              <Countdown startDateTime={auctionDate} />{" "}
+            <p className="mb-auto text-xs">
+              <Countdown startDateTime={auctionDate} type={type} />
             </p>
             <p className="text-[10px] mt-auto">
-              {yourBid > 0 ? (
+              {type === "exhibition" ? (
+                <>
+                  Min Bid: <b>{convertToReadableNumber(minBid)} RWA</b>
+                </>
+              ) : yourBid > 0 ? (
                 <>
                   Your Bid: <b>{convertToReadableNumber(yourBid)} RWA</b>
                 </>

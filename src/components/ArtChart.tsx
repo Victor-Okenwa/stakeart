@@ -1,7 +1,7 @@
-"use client"
+"use client";
 
-import { TrendingUp } from "lucide-react"
-import { CartesianGrid, Line, LineChart, XAxis } from "recharts"
+import { TrendingUp } from "lucide-react";
+import { CartesianGrid, Line, LineChart, XAxis } from "recharts";
 
 import {
   Card,
@@ -10,24 +10,24 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
+} from "@/components/ui/card";
 import {
   ChartConfig,
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
-} from "@/components/ui/chart"
+} from "@/components/ui/chart";
 
-export const description = "A line chart with dots"
+export const description = "A line chart with dots";
 
 const chartData = [
-  { month: "January", desktop: 186, mobile: 80 },
-  { month: "February", desktop: 305, mobile: 200 },
-  { month: "March", desktop: 237, mobile: 120 },
-  { month: "April", desktop: 73, mobile: 190 },
-  { month: "May", desktop: 209, mobile: 130 },
-  { month: "June", desktop: 214, mobile: 140 },
-]
+  { month: "January", price: 186 },
+  { month: "February", price: 305 },
+  { month: "March", price: 237 },
+  { month: "April", price: 73 },
+  { month: "May", price: 209 },
+  { month: "June", price: 214 },
+];
 
 const chartConfig = {
   desktop: {
@@ -38,14 +38,14 @@ const chartConfig = {
     label: "Mobile",
     color: "hsl(var(--chart-2))",
   },
-} satisfies ChartConfig
+} satisfies ChartConfig;
 
-const ArtChart = ()=>{
+const ArtChart = ({ numberOfAuctions, numberOfOwners }: ArtChartProps) => {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Line Chart - Dots</CardTitle>
-        <CardDescription>January - June 2024</CardDescription>
+        <CardTitle>Art auction participation</CardTitle>
+        {/* <CardDescription>January - June 2024</CardDescription> */}
       </CardHeader>
       <CardContent>
         <ChartContainer config={chartConfig}>
@@ -57,7 +57,7 @@ const ArtChart = ()=>{
               right: 12,
             }}
           >
-            <CartesianGrid vertical={false} />
+            <CartesianGrid vertical={false}  />
             <XAxis
               dataKey="month"
               tickLine={false}
@@ -70,29 +70,30 @@ const ArtChart = ()=>{
               content={<ChartTooltipContent hideLabel />}
             />
             <Line
-              dataKey="desktop"
+              dataKey="price"
               type="natural"
               stroke="var(--color-desktop)"
-              strokeWidth={2}
+              strokeWidth={1}
               dot={{
                 fill: "var(--color-desktop)",
               }}
               activeDot={{
-                r: 6,
+                r: 8,
               }}
             />
           </LineChart>
         </ChartContainer>
+
+        <CardFooter className="flex flex-col pb-0 px-0 pt-2 items-start">
+          <div className="flex justify-between gap-2 text-sm w-full">
+            <b>Participation:</b> {numberOfAuctions}
+          </div>
+          <div className="flex justify-between gap-2 text-sm w-full">
+            <b>Owners:</b> {numberOfOwners}
+          </div>
+        </CardFooter>
       </CardContent>
-      <CardFooter className="flex-col items-start gap-2 text-sm">
-        <div className="flex gap-2 font-medium leading-none">
-          Trending up by 5.2% this month <TrendingUp className="h-4 w-4" />
-        </div>
-        <div className="leading-none text-muted-foreground">
-          Showing total visitors for the last 6 months
-        </div>
-      </CardFooter>
     </Card>
-  )
-}
+  );
+};
 export default ArtChart;

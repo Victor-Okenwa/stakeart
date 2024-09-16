@@ -1,9 +1,6 @@
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import AppOutlet from "./outlets/AppOutlet";
 import Home from "./pages/home/Home";
-import Withdraw from "./pages/Withdraw";
-import AddFund from "./pages/AddFund";
-import Swap from "./pages/Swap";
 import Profile from "./pages/Profile";
 import BidParticipation from "./pages/home/BidParticipation";
 import { useEffect, useState } from "react";
@@ -23,7 +20,12 @@ import MintAsset from "./pages/gallery/MintAsset";
 import MakeCollectible from "./pages/gallery/MakeCollectible";
 import AuctionAsset from "./pages/gallery/AuctionAsset";
 import StakeCuts from "./pages/gallery/StakeCuts";
-import Exhibition from "./pages/gallery/Exhibition";
+import GalleryExhibition from "./pages/gallery/GalleryExhibition";
+import Elites from "./pages/elites/Elites";
+import Leaderboards from "./pages/leaderboard/Leaderboards";
+import Elite from "./pages/elites/Elite";
+import Exhibitions from "./pages/exhibition/Exhibitions";
+import Exhibition from "./pages/exhibition/Exhibition";
 
 // 1. Your WalletConnect Cloud project ID
 const projectId = "7a094e114d5bcd22031585b7b9c5ad5d";
@@ -100,19 +102,27 @@ function App() {
               <Route path="collectibles" element={<Collectibles />} />
               <Route path="collectibles/:id" element={<Collectible />} />
 
-              <Route path="withdraw" element={<Withdraw />} />
-              <Route path="add-fund" element={<AddFund />} />
-              <Route path="swap" element={<Swap />} />
               <Route path="profile" element={<Profile />} />
             </Route>
 
+            <Route path="elites" element={<Elites />} />
+            <Route path="elite" element={<Elite />} />
+
+            <Route path="exhibitions" element={<Exhibitions />} />
+            <Route path="exhibitions/:id" element={<Exhibition />} />
+
+            <Route path="leaderboards" element={<Leaderboards />} />
+
             <Route path="/gallery" element={<GalleryOutlet />}>
               <Route path="home" element={<Gallery />} />
-              <Route path="asset/auction-asset/:id" element={<AuctionAsset />} />
+              <Route
+                path="asset/auction-asset/:id"
+                element={<AuctionAsset />}
+              />
 
               <Route path="mint" element={<MintAsset />} />
               <Route path="stake-cuts" element={<StakeCuts />} />
-              <Route path="exhibition" element={<Exhibition />} />
+              <Route path="exhibition" element={<GalleryExhibition />} />
               <Route
                 path="home/make-collectible"
                 element={<MakeCollectible />}

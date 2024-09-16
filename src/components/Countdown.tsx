@@ -1,7 +1,13 @@
 import { cn } from "@/lib/utils";
 import { useEffect, useState } from "react";
 
-const Countdown = ({ startDateTime }: { startDateTime: Date }) => {
+const Countdown = ({
+  startDateTime,
+  type = "auction",
+}: {
+  startDateTime: Date;
+  type?: "auction" | "exhibition";
+}) => {
   const now = new Date();
   const [timeLeft, setTimeLeft] = useState<string>("");
   const [difference, setDifference] = useState(
@@ -20,13 +26,15 @@ const Countdown = ({ startDateTime }: { startDateTime: Date }) => {
 
       const combinedTime = `
       ${days !== 0 ? days + "d" : ""}
-      ${hours !== 0 ? hours + ":" : ""}${minutes !== 0 ? (minutes < 10 ? '0' + minutes : minutes) + ":" : "00" + ":"}${
-        seconds !== 0 ? seconds < 10 ? '0'+ seconds : seconds : "00"
-      }
+      ${hours !== 0 ? hours + ":" : ""}${
+        minutes !== 0
+          ? (minutes < 10 ? "0" + minutes : minutes) + ":"
+          : "00" + ":"
+      }${seconds !== 0 ? (seconds < 10 ? "0" + seconds : seconds) : "00"}
       `;
       setTimeLeft(combinedTime);
     } else {
-      setTimeLeft("Auction over");
+      setTimeLeft(type === "exhibition" ? "Off exhibition" : "Auction over");
     }
   };
   useEffect(() => {
@@ -39,7 +47,8 @@ const Countdown = ({ startDateTime }: { startDateTime: Date }) => {
   return (
     <div
       className={cn("text-green-500", {
-        "text-destructive": difference < 1200000,
+        "text-destructive": type !== "exhibition" && difference < 1200000,
+        "text-orange-600": type === "exhibition",
       })}
     >
       {timeLeft}
