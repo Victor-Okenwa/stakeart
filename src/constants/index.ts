@@ -1,4 +1,4 @@
-import { ArrowUpDown, BadgeDollarSignIcon, GavelIcon, Home, Images, PlusCircle, Timer, UserCircle } from "lucide-react";
+import { ArrowUpDown, BadgeDollarSignIcon, GavelIcon, Gem, Home, Images, PlusCircle, PlusSquare, Timer, UserCircle } from "lucide-react";
 import { FaFunnelDollar, FaPlusSquare } from "react-icons/fa";
 import { FaDiamond } from "react-icons/fa6";
 
@@ -37,12 +37,12 @@ const GalleryNavigationLinks = [
     },
     {
         label: 'assets',
-        icon: FaDiamond,
+        icon: Gem,
         href: '/gallery/home',
     },
     {
         label: 'mint asset',
-        icon: FaPlusSquare,
+        icon: PlusSquare,
         href: '/gallery/mint',
     },
     {

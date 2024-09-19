@@ -20,6 +20,15 @@ declare interface Auction {
   yourBid?: number;
 }
 
+declare interface Elite {
+  id: string;
+  avatar: string;
+  numberOfAuctions: number;
+  avgPrice: number;
+}
+
+// declare interface EliteCardProps extends Elite {} 
+
 declare interface AuctionCardProps extends Auction {
   type?: 'auction' | 'exhibition';
 }
@@ -110,4 +119,11 @@ declare interface GalleryCardProps {
 declare interface ArtChartProps {
   numberOfAuctions: number;
   numberOfOwners: number;
+}
+
+declare interface LeaderBoardCardProps {
+  index: number;
+  id: string, 
+  avatar: string;
+  address: string;
 }

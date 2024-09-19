@@ -41,8 +41,8 @@ const Home = () => {
   return (
     <main className="flex flex-col gap-5">
       <ClientInfo />
-
-      <section className="grid grid-cols-3 grid-rows-3 px-4 gap-3">
+      {/* grid grid-cols-3 grid-rows-3 px-4  */}
+      <section className="flex flex-wrap *:basis:[33%] *:flex-1 gap-3 px-4">
         {gridButtons.map((item) => (
           <Button
             key={item.label}

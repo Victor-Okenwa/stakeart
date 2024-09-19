@@ -1,5 +1,5 @@
-const ReduceString = ({ text }: { text: string }) => {
-  const reducedString = text.length > 20 ? text.substring(0, 18) + "..." : text;
+const ReduceString = ({ text, strLength= 18 }: { text: string, strLength?:number }) => {
+  const reducedString = text.length > strLength ? text.substring(0, strLength) + "..." : text;
   return <p>{reducedString}</p>;
 };
 

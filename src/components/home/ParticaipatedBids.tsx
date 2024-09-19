@@ -10,7 +10,7 @@ const ParticaipatedBids = () => {
       avatar: CompHand,
       name: "retarded singer and the three mouse",
       auctioneer: "0xb4791058934bced32891832",
-      date: "2024-09-24T21:00:00",
+      date: "2024-11-24T21:00:00",
       currentBid: 2791,
       minBid: 2000,
       yourBid: 0,
@@ -75,19 +75,21 @@ const ParticaipatedBids = () => {
       {/* Build auction card and add countdown */}
       <div className="px-4 py-4 bg-secondary flex flex-col gap-2">
         {participation.length > 0 ? (
-          participation.slice(0, 5).map((auction) => (
-            <AuctionCard
-              key={auction.id}
-              auctioneer={auction.auctioneer}
-              avatar={auction.avatar}
-              currentBid={auction.currentBid}
-              date={auction.date}
-              id={auction.id}
-              minBid={auction.minBid}
-              name={auction.name}
-              yourBid={auction.yourBid}
-            />
-          ))
+          participation
+            .slice(0, 5)
+            .map((auction) => (
+              <AuctionCard
+                key={auction.id}
+                auctioneer={auction.auctioneer}
+                avatar={auction.avatar}
+                currentBid={auction.currentBid}
+                date={auction.date}
+                id={auction.id}
+                minBid={auction.minBid}
+                name={auction.name}
+                yourBid={auction.yourBid}
+              />
+            ))
         ) : (
           <h3 className="py-16 text-center text-primary/60">No Result </h3>
         )}

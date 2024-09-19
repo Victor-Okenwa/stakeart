@@ -35,7 +35,7 @@ const AuctionCard = ({
                 <ReduceString text={name} />
               </CardTitle>
               <CardDescription className="text-xs">
-                <ReduceString text={auctioneer} />
+                <ReduceString text={auctioneer} strLength={10} />
               </CardDescription>
             </div>
           </CardHeader>

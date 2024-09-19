@@ -106,7 +106,7 @@ function App() {
             </Route>
 
             <Route path="elites" element={<Elites />} />
-            <Route path="elite" element={<Elite />} />
+            <Route path="elites/:id" element={<Elite />} />
 
             <Route path="exhibitions" element={<Exhibitions />} />
             <Route path="exhibitions/:id" element={<Exhibition />} />
