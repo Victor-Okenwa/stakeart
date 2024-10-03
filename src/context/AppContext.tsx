@@ -1,13 +1,13 @@
 import { createContext, useState } from "react";
 
 interface AppContextType {
-  balance: string;
-  setBalance: React.Dispatch<React.SetStateAction<string>>;
+  balance: number;
+  setBalance: React.Dispatch<React.SetStateAction<number>>;
 }
 
 // Create a default context value
 const defaultContextValue: AppContextType = {
-  balance: "0.00",
+  balance: 5420,
   setBalance: () => {}, // No-op function
 };
 // Create a Context for the theme
@@ -15,7 +15,7 @@ export const AppContext = createContext(defaultContextValue);
 
 // Create a Provider component
 export const AppProvider = ({ children }: { children: React.ReactNode }) => {
-  const [balance, setBalance] = useState("0.00"); // Default value
+  const [balance, setBalance] = useState(5000); // Default value
 
   return (
     <AppContext.Provider value={{ balance, setBalance }}>

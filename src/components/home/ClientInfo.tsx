@@ -39,7 +39,7 @@ const ClientInfo = () => {
         <div className="h-10">
           {isBalanceVisible ? (
             <div className="flex items-baseline gap-px">
-              <span className="text-3xl">{parseFloat(balance)}</span>
+              <span className="text-3xl">{convertToReadableNumber(balance, 2)}</span>
               <span className="uppercase text-[10px]">{balanceType}</span>
             </div>
           ) : (
