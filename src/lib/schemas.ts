@@ -16,19 +16,22 @@ export const pleadFormSchema = (type: 'stake' | 'collect') =>
         }) : z.string().optional(),
     });
 
+// refine((val) => !Number.isNaN(parseInt(val, 10)), {
+//     message: "Please input number"
+// })
+
 export const mintFormSchema = () =>
     z.object({
-        title: z.string().min(1, { message: "Title cannot be empty" }),
-        medium: z.string(),
-        dimension: z.string(),
+        title: z.string().min(1, { message: "Input title" }),
+        category: z.string().min(1, { message: 'Please select a category' }),
+        medium: z.string().optional(),
+        dimension: z.string().optional(),
         description: z.string().optional(),
-        netWeight: z.string().refine((val) => !Number.isNaN(parseInt(val, 10)), {
-            message: "Expected number"
-        }).optional(),
+        netWeight: z.string(),
         owner: z.string(),
         country: z.string(),
         avatar: z
-            .instanceof(FileList)
+            .instanceof(FileList, { message: "Please select a JPG file" })
             .refine((fileList) => fileList.length > 0, {
                 message: "Please select a JPG file.",
             })
@@ -36,7 +39,10 @@ export const mintFormSchema = () =>
             .refine((file) => file?.type === "image/jpg", {
                 message: "Only jpg files are allowed.",
             }),
-    });
+    }).refine(({ category, medium }) => {
+        console.log(category, medium)
+        return category == 'art' && medium === '';
+    }, { message: 'Please input art medium', path: ['medium'] });
 
 export const auctionAssetFormSchema = () =>
     z.object({

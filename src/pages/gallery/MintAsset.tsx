@@ -1,4 +1,5 @@
 import CustomFormField from "@/components/form/CustomFormField";
+import CustomFormSelect from "@/components/form/CustomFormSelect";
 import Loader from "@/components/Loader";
 import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
@@ -17,6 +18,8 @@ const MintAsset = () => {
     resolver: zodResolver(formSchema),
   });
 
+  const [artCategory, setArtCategory] = useState("art");
+
   const avatarRef = form.register("avatar");
 
   const handleSubmit = () => {
@@ -32,19 +35,37 @@ const MintAsset = () => {
       <Topbar text="Mint Asset" />
 
       <Form {...form}>
-        <form className="p-4 flex flex-col gap-4" onSubmit={form.handleSubmit(handleSubmit)}>
+        <form
+          className="p-4 flex flex-col gap-4"
+          onSubmit={form.handleSubmit(handleSubmit)}
+        >
           <CustomFormField
             control={form.control}
             name="title"
             placeholder="Input text here"
             label="Title"
           />
-          <CustomFormField
+
+          <CustomFormSelect
             control={form.control}
-            name="medium"
-            placeholder="eg. Oil on Canvas"
-            label="medium"
+            name="category"
+            placeholder="Select asset category"
+            options={["art", "craft", "photography"]}
+            // defaultValue={"art"}
+            setValue={setArtCategory}
           />
+
+          {artCategory === "art" ? (
+            <CustomFormField
+              control={form.control}
+              name="medium"
+              placeholder="eg. Oil on Canvas"
+              label="medium"
+            />
+          ) : (
+            ""
+          )}
+
           <CustomFormField
             control={form.control}
             name="dimension"
@@ -63,6 +84,7 @@ const MintAsset = () => {
             placeholder="Input the art location"
             label="country"
           />
+
           <CustomFormField
             control={form.control}
             // name="avatar(art snapshot)"
@@ -82,9 +104,9 @@ const MintAsset = () => {
             inputType="textarea"
           />
 
-          <p className="text-sm mx-auto">
+          {/* <p className="text-sm mx-auto">
             Once your asset is uploaded to the chain it cannot be undone.
-          </p>
+          </p> */}
 
           <div className="flex gap-2 text-sm items-center">
             <input

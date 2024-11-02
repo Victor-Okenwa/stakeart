@@ -53,6 +53,8 @@ declare interface CustomFormSelectProps
   extends Omit<CustomFormFieldProps, "isPasswordVisible"> {
   defaultOption?: string;
   options: string[];
+  setValue?: React.Dispatch<React.SetStateAction<string>>,
+
 }
 
 declare interface CustomDateTimeFieldProps extends Omit<CustomFormFieldProps, 'isPasswordVisible'> {

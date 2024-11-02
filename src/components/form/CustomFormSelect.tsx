@@ -17,10 +17,11 @@ const CustomFormSelect = ({
   control,
   name,
   label = "",
-  placeholder="",
+  placeholder = "",
   defaultOption = "",
   defaultValue = "",
   options,
+  setValue,
 }: CustomFormSelectProps) => {
   return (
     <FormField
@@ -31,7 +32,7 @@ const CustomFormSelect = ({
         <FormItem className="form-item">
           <div className="flex w-full gap-1 flex-col bg-secondary ring-2 ring-primary rounded-lg p-2 focus-within:bg-primary-foreground">
             <Select
-              onValueChange={field.onChange}
+              onValueChange={ (value)=>  {field.onChange(value); setValue!(value)}}
               value={field.value || defaultValue || defaultOption}
             >
               <FormLabel className="text-xs font-bold capitalize">
@@ -41,9 +42,13 @@ const CustomFormSelect = ({
                 <SelectValue placeholder={placeholder} />
               </SelectTrigger>
 
-              <SelectContent>
+              <SelectContent >
                 {options.map((option, index) => (
-                  <SelectItem key={index} value={option}>
+                  <SelectItem
+                    key={index}
+                    value={option}
+                    onSelect={() => alert()}
+                  >
                     <span className="flex items-center capitalize">
                       {option}
                     </span>
