@@ -69,7 +69,7 @@ const CustomFormField = ({
                   />
 
                   {name === "password" && (
-                    <Button
+                    <Button 
                       type="button"
                       className="px-2 rounded-s-none border *:size-5"
                       onClick={() => setIsPasswordVisible(!isPasswordVisible)}

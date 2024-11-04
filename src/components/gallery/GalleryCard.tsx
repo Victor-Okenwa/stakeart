@@ -27,8 +27,13 @@ import CustomFormField from "../form/CustomFormField";
 import CustomDateTimeField from "../form/CustomDateTimeField";
 import { useState } from "react";
 import CustomFormSelect from "../form/CustomFormSelect";
+import { toast } from "sonner";
+import { DialogClose } from "@radix-ui/react-dialog";
+import SubmitButton from "../form/SubmitButton";
 
 const GalleryCard = ({ id, avatar, date, type }: GalleryCardProps) => {
+  const [isLoading, setIsLoading] = useState(false);
+  // const [isOpen, setIsOpen] = useState(false);
   const auctionFormSchema = auctionAssetFormSchema();
   const auctionForm = useForm<z.infer<typeof auctionFormSchema>>({
     resolver: zodResolver(auctionFormSchema),
@@ -57,7 +62,18 @@ const GalleryCard = ({ id, avatar, date, type }: GalleryCardProps) => {
     }
   };
 
-  const handleAuctionFormSubmit = () => {};
+  const handleAuctionFormSubmit = (data: z.infer<typeof auctionFormSchema>) => {
+    const { duration, exhibition, minBid } = data;
+
+    console.log({ duration, exhibition, minBid });
+
+    setIsLoading(true);
+
+    setTimeout(() => {
+      setIsLoading(false);
+      toast.success("Asset added to exhibit chamber");
+    }, 2000);
+  };
   const handleStakeFormSubmit = () => {};
   const handleCollectibleFormSubmit = () => {};
 
@@ -92,7 +108,6 @@ const GalleryCard = ({ id, avatar, date, type }: GalleryCardProps) => {
       "5 hours",
       "7 hours",
       "10 hours",
-      "12 hours",
       "12 hours",
       "15 hours",
       "1 day",
@@ -162,6 +177,7 @@ const GalleryCard = ({ id, avatar, date, type }: GalleryCardProps) => {
                     control={auctionForm.control}
                     name="duration"
                     label="duration"
+                    placeholder="Select auction duration"
                     options={timeDurations}
                     defaultValue={"15 mins"}
                   />
@@ -173,6 +189,7 @@ const GalleryCard = ({ id, avatar, date, type }: GalleryCardProps) => {
                       control={auctionForm.control}
                       name="exhibition"
                       label="exhibition"
+                      placeholder="Select exhibition duration"
                       options={timeDurations}
                       defaultValue={"15 mins"}
                     />
@@ -182,7 +199,7 @@ const GalleryCard = ({ id, avatar, date, type }: GalleryCardProps) => {
                   </div>
                 )}
 
-                <Button
+                <SubmitButton
                   variant={
                     type === "auction"
                       ? "purple"
@@ -190,9 +207,9 @@ const GalleryCard = ({ id, avatar, date, type }: GalleryCardProps) => {
                       ? "gold"
                       : undefined
                   }
-                >
-                  Confirm
-                </Button>
+                  isLoading={isLoading}
+                  child={"Confirm"}
+                />
               </form>
             </Form>
           </CardFooter>

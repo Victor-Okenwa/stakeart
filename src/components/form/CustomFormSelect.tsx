@@ -30,19 +30,22 @@ const CustomFormSelect = ({
       defaultValue={defaultValue}
       render={({ field }) => (
         <FormItem className="form-item">
-          <div className="flex w-full gap-1 flex-col bg-secondary ring-2 ring-primary rounded-lg p-2 focus-within:bg-primary-foreground">
+          <div className="flex w-full gap-1 flex-col bg-popover ring-0 ring-primary rounded-lg p-2 shadow-md focus-within:bg-primary-foreground">
             <Select
-              onValueChange={ (value)=>  {field.onChange(value); setValue!(value)}}
+              onValueChange={(value) => {
+                field.onChange(value);
+                setValue!(value);
+              }}
               value={field.value || defaultValue || defaultOption}
             >
-              <FormLabel className="text-xs font-bold capitalize">
+              <FormLabel className="text-sm font-bold capitalize">
                 {label || splitCamelCaseToWords(name)}
               </FormLabel>
-              <SelectTrigger className="text-gray-500 bg-transparent border-none p-0 h-auto focus:ring-0 focus:ring-offset-0">
+              <SelectTrigger className="text-gray-500 bg-secondary rounded-none p-1 border h-auto focus:ring-0 focus:ring-offset-0">
                 <SelectValue placeholder={placeholder} />
               </SelectTrigger>
 
-              <SelectContent >
+              <SelectContent>
                 {options.map((option, index) => (
                   <SelectItem
                     key={index}

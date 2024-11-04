@@ -10,7 +10,12 @@ const SubmitButton = ({
   isLoading,
 }: SubmitButtonProps) => {
   return (
-    <Button type="submit" variant={variant} className={className}>
+    <Button
+      disabled={isLoading}
+      type="submit"
+      variant={variant}
+      className={className}
+    >
       {isLoading ? <Loader type={loaderType} /> : child}
     </Button>
   );
