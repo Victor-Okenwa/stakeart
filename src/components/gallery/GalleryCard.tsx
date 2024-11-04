@@ -83,6 +83,25 @@ const GalleryCard = ({ id, avatar, date, type }: GalleryCardProps) => {
       "70%",
     ];
 
+    const timeDurations = [
+      "15 mins",
+      "30 mins",
+      "1 hour",
+      "2 hours",
+      "2 hours",
+      "5 hours",
+      "7 hours",
+      "10 hours",
+      "12 hours",
+      "12 hours",
+      "15 hours",
+      "1 day",
+      "2 days",
+      "2 days",
+      "5 days",
+      "7 days",
+    ];
+
     return (
       <Dialog>
         <DialogTrigger className="p-1 hover:bg-primary hover:text-secondary">
@@ -122,9 +141,9 @@ const GalleryCard = ({ id, avatar, date, type }: GalleryCardProps) => {
 
                 {type !== "collectible" && (
                   <div className="flex w-full flex-1">
-                    <div className="text-sm mt-auto p-2 bg-purple text-popover">
+                    {/* <div className="text-sm mt-auto p-2 bg-purple text-popover">
                       RWA
-                    </div>
+                    </div> */}
                     <div className="flex-grow">
                       <CustomFormField
                         control={currentForm.control}
@@ -139,30 +158,27 @@ const GalleryCard = ({ id, avatar, date, type }: GalleryCardProps) => {
                   </div>
                 )}
                 {type !== "collectible" && (
-
-                  <CustomDateTimeField
-                    control={currentForm.control}
+                  <CustomFormSelect
+                    control={auctionForm.control}
                     name="duration"
                     label="duration"
-                    min={"2018-06-07T00:00"}
-                    defaultValue={"2024-09-09T09:00:00"}
+                    options={timeDurations}
+                    defaultValue={"15 mins"}
                   />
-
                 )}
 
                 {type === "auction" && (
                   <div className="flex flex-col">
-                    <p className="text-xs text-primary/60">
-                      Optionally you can put your art on exhibition to prepare
-                      users for auction
-                    </p>
-                    <CustomDateTimeField
+                    <CustomFormSelect
                       control={auctionForm.control}
                       name="exhibition"
                       label="exhibition"
-                      min={"2018-06-07T00:00"}
-                      defaultValue={"2024-09-09T09:00:00"}
+                      options={timeDurations}
+                      defaultValue={"15 mins"}
                     />
+                    <p className="text-xs text-primary/60">
+                      Put your art on exhibition and announce NFT sale to users
+                    </p>
                   </div>
                 )}
 

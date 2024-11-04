@@ -18,6 +18,7 @@ module.exports = {
     },
     extend: {
       fontFamily: {
+        'dm-sans': ["Dm Sans", "sans-serif"], // Heading/important font
         rubik: ["Rubik", "sans-serif"], // Heading/important font
         montserrat: ["Montserrat", "sans"], //Body/paragraph font
       },

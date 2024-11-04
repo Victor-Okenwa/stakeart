@@ -1,9 +1,20 @@
-import { z } from 'zod'
+import { z } from 'zod';
+
+export const authSchema = () =>
+    z.object({
+        email: z.string().email({ message: 'Invalid email' }),
+        password: z.string().min(1, { message: 'Password is required' }).min(8, { message: 'Cannot be less than 8 characters' }),
+    });
+
+export const onlyOTPFormSchema = () =>
+    z.object({
+        otp: z.string().min(5, { message: 'Please input 5 digits' })
+    });
 
 export const bidFormSchema = () =>
     z.object({
         bidAmount: z.string().refine((val) => !Number.isNaN(parseInt(val, 10)), {
-            message: "Expected number"
+            message: "Input bid amount"
         }),
     });
 
@@ -12,7 +23,7 @@ export const pleadFormSchema = (type: 'stake' | 'collect') =>
         interest: type === 'stake' ? z.string() : z.string().optional(),
         duration: type === 'stake' ? z.string() : z.string().optional(),
         minAmount: type === 'stake' ? z.string().refine((val) => !Number.isNaN(parseInt(val, 10)), {
-            message: "Expected number"
+            message: "Input bid amount"
         }) : z.string().optional(),
     });
 
@@ -47,18 +58,18 @@ export const mintFormSchema = () =>
 export const auctionAssetFormSchema = () =>
     z.object({
         minBid: z.string().refine((val) => !Number.isNaN(parseInt(val, 10)), {
-            message: "Expected number"
+            message: "Input bid amount"
         }),
 
-        exhibition: z.coerce.date().min(new Date(), { message: "Cannot parse date less than now" }),
-        duration: z.coerce.date().min(new Date(), { message: "Cannot parse date less than now" })
+        exhibition: z.string(),
+        duration: z.string()
     });
 
 export const stakeAssetFormSchema = () =>
     z.object({
         interest: z.string(),
-        duration: z.coerce.date().min(new Date(), { message: "Cannot parse date less than now" }),
+        duration: z.string(),
         minAmount: z.string().refine((val) => !Number.isNaN(parseInt(val, 10)), {
-            message: "Expected number"
+            message: "Input minimum bid amount"
         }),
     });

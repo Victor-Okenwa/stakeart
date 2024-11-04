@@ -26,6 +26,9 @@ import Leaderboards from "./pages/leaderboard/Leaderboards";
 import Elite from "./pages/elites/Elite";
 import Exhibitions from "./pages/exhibition/Exhibitions";
 import Exhibition from "./pages/exhibition/Exhibition";
+import Auth from "./layouts/Auth";
+import AuthForm from "./pages/auth/AuthForm";
+import OtpVerification from "./pages/auth/OtpVerification";
 
 // 1. Your WalletConnect Cloud project ID
 const projectId = "7a094e114d5bcd22031585b7b9c5ad5d";
@@ -90,6 +93,12 @@ function App() {
         <Router>
           <Routes>
             <Route path="/" element={<AppOutlet />}>
+              <Route path="auth" element={<Auth />}>
+                <Route path="sign-up" element={<AuthForm />} />
+                <Route path="sign-in" element={<AuthForm />} />
+                <Route path="otp-verification" element={<OtpVerification />} />
+              </Route>
+
               <Route path="home" element={<Home />} />
               <Route path="home/participation" element={<BidParticipation />} />
 
@@ -113,7 +122,7 @@ function App() {
 
             <Route path="leaderboards" element={<Leaderboards />} />
 
-            <Route path="/gallery" element={<GalleryOutlet />}>
+            <Route path="gallery" element={<GalleryOutlet />}>
               <Route path="home" element={<Gallery />} />
               <Route
                 path="asset/auction-asset/:id"
