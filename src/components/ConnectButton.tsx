@@ -33,18 +33,15 @@ export default function ConnectButton() {
     }
 
     getBalance();
-  }, []);
+  }, [isConnected, address, setBalance]);
 
   return (
     <>
       {isConnected ? (
-        <Button
-          variant="transparent"
-          size={"no-pad"}
+        <UserCircle
+          className="cursor-pointer"
           onClick={() => open({ view: "Account" })}
-        >
-          <UserCircle className="cursor-pointer" />
-        </Button>
+        />
       ) : (
         <Button
           onClick={() => open()}

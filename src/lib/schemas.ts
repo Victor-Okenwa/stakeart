@@ -39,21 +39,24 @@ export const mintFormSchema = () =>
         dimension: z.string().optional(),
         description: z.string().optional(),
         netWeight: z.string(),
-        owner: z.string(),
+        // owner: z.string(),
         country: z.string(),
         avatar: z
-            .instanceof(FileList, { message: "Please select a JPG file" })
+            .instanceof(FileList, {
+                message: "Select a file",
+            })
             .refine((fileList) => fileList.length > 0, {
                 message: "Please select a JPG file.",
             })
             .transform((fileList) => fileList.item(0))
-            .refine((file) => file?.type === "image/jpg", {
-                message: "Only jpg files are allowed.",
+            .refine((file) => file && (file.type === "image/jpeg" || file.type === "image/jpg"), {
+                message: "Only JPG files are allowed.",
             }),
-    }).refine(({ category, medium }) => {
-        console.log(category, medium)
-        return category == 'art' && medium === '';
-    }, { message: 'Please input art medium', path: ['medium'] });
+    })
+// .refine(({ category, medium }) => {
+//     console.log(category, medium)
+//     return category == 'art' && medium === '';
+// }, { message: 'Please input art medium', path: ['medium'] });
 
 export const auctionAssetFormSchema = () =>
     z.object({

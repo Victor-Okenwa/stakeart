@@ -1,14 +1,24 @@
 import CustomFormField from "@/components/form/CustomFormField";
 import CustomFormSelect from "@/components/form/CustomFormSelect";
-import Loader from "@/components/Loader";
-import { Button } from "@/components/ui/button";
+import SubmitButton from "@/components/form/SubmitButton";
+import {
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
 import { Form } from "@/components/ui/form";
 import Topbar from "@/layouts/Topbar";
 import { mintFormSchema } from "@/lib/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 import { z } from "zod";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+
 
 const MintAsset = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -22,12 +32,36 @@ const MintAsset = () => {
 
   const avatarRef = form.register("avatar");
 
-  const handleSubmit = () => {
+  const handleSubmit = (data: z.infer<typeof formSchema>) => {
     setIsLoading(true);
+    const {
+      avatar,
+      category,
+      country,
+      netWeight,
+      owner,
+      title,
+      description,
+      dimension,
+      medium,
+    } = data;
+    console.log({
+      avatar,
+      category,
+      country,
+      netWeight,
+      owner,
+      title,
+      description,
+      dimension,
+      medium,
+    });
 
+    setIsLoading(true);
     setTimeout(() => {
       setIsLoading(false);
-    }, 1000);
+      toast.success("New asset added to gallery");
+    }, 2000);
   };
 
   return (
@@ -85,21 +119,35 @@ const MintAsset = () => {
             label="country"
           />
 
-          <CustomFormField
+          <FormField
             control={form.control}
-            // name="avatar(art snapshot)"
-            placeholder="Snapshot of art"
-            label="avatar"
-            fieldType="file"
-            inputClassName="file:hidden"
-            accepts="jpg"
-            {...avatarRef}
+            name="avatar"
+            render={() => (
+              <FormItem>
+                <div className="flex flex-col bg-popover ring-1 shadow-md ring-secondary rounded-lg py-2 px-3 gap-2 focus-within:ring-destructive focus-within:bg-primary-foreground">
+                  <FormLabel className="text-xs text-destructive">
+                    Upload
+                  </FormLabel>
+
+                  <FormControl className="p-0 bg-transparent border-none outline-none focus-visible:ring-0">
+                    <Input
+                      type="file"
+                      className="file:hidden"
+                      placeholder="Select a JPG File to Upload"
+                      accept="image/jpg"
+                      {...avatarRef}
+                    />
+                  </FormControl>
+                </div>
+                <FormMessage className="form-message" />
+              </FormItem>
+            )}
           />
 
           <CustomFormField
             control={form.control}
             name="description"
-            placeholder="Snapshot of art"
+            placeholder="Describe your art"
             label="description"
             inputType="textarea"
           />
@@ -118,13 +166,12 @@ const MintAsset = () => {
             />
             <label htmlFor="accepted">Accept terms and conditions</label>
           </div>
-          <Button
-            disabled={!isAccepted || isLoading}
+{/* <Button type="submit"></Button> */}
+          <SubmitButton
             variant={"purple"}
-            className="mt-10"
-          >
-            {isLoading ? <Loader type="all" /> : "Mint"}
-          </Button>
+            isLoading={isLoading}
+            child={"Mint new asset"}
+          />
         </form>
       </Form>
     </main>

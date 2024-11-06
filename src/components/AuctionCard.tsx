@@ -26,10 +26,10 @@ const AuctionCard = ({
 
   return (
     <Link to={`/${type}s/${id}`}>
-      <Card className="p-0">
-        <CardContent className="flex p-2 items-center justify-between">
-          <CardHeader className="flex flex-row gap-4 p-0">
-            <img src={avatar} className="size-10" alt="" />
+      <Card className="p-0 rounded-none shadow-none">
+        <CardContent className="flex flex-col p-2 rounded-0 shadow-none">
+          <CardHeader className="flex gap-4 p-0">
+            <img src={avatar} className="w-full h-[30em]" alt="" />
             <div className="flex flex-col justify-between text-xs">
               <CardTitle className="text-xs capitalize text-[11px]">
                 <ReduceString text={name} />

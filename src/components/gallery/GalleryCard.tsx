@@ -74,8 +74,28 @@ const GalleryCard = ({ id, avatar, date, type }: GalleryCardProps) => {
       toast.success("Asset added to exhibit chamber");
     }, 2000);
   };
-  const handleStakeFormSubmit = () => {};
-  const handleCollectibleFormSubmit = () => {};
+  const handleStakeFormSubmit = (data: z.infer<typeof stakeFormSchema>) => {
+    const { duration, interest, minAmount } = data;
+
+    console.log({ duration, interest, minAmount });
+
+    setIsLoading(true);
+
+    setTimeout(() => {
+      setIsLoading(false);
+      toast.success("Asset added to stake chamber");
+    }, 2000);
+  };
+  const handleCollectibleFormSubmit = () => {
+    console.log({ duration, interest, minAmount });
+
+    setIsLoading(true);
+
+    setTimeout(() => {
+      setIsLoading(false);
+      toast.success("Asset is now a collectible");
+    }, 2000);
+  };
 
   const dialogFormat = (type: "auction" | "stake" | "collectible") => {
     const currentForm = type === "auction" ? auctionForm : stakeForm;
@@ -104,7 +124,7 @@ const GalleryCard = ({ id, avatar, date, type }: GalleryCardProps) => {
       "30 mins",
       "1 hour",
       "2 hours",
-      "2 hours",
+      "3 hours",
       "5 hours",
       "7 hours",
       "10 hours",
@@ -112,7 +132,7 @@ const GalleryCard = ({ id, avatar, date, type }: GalleryCardProps) => {
       "15 hours",
       "1 day",
       "2 days",
-      "2 days",
+      "3 days",
       "5 days",
       "7 days",
     ];
@@ -150,7 +170,7 @@ const GalleryCard = ({ id, avatar, date, type }: GalleryCardProps) => {
                     control={stakeForm.control}
                     name="interest"
                     options={interests}
-                    placeholder="Money you are willing to give back"
+                    placeholder="Amount you are willing to give back"
                   />
                 )}
 
@@ -174,10 +194,10 @@ const GalleryCard = ({ id, avatar, date, type }: GalleryCardProps) => {
                 )}
                 {type !== "collectible" && (
                   <CustomFormSelect
-                    control={auctionForm.control}
+                    control={currentForm.control}
                     name="duration"
                     label="duration"
-                    placeholder="Select auction duration"
+                    placeholder="Select duration"
                     options={timeDurations}
                     defaultValue={"15 mins"}
                   />
@@ -186,7 +206,7 @@ const GalleryCard = ({ id, avatar, date, type }: GalleryCardProps) => {
                 {type === "auction" && (
                   <div className="flex flex-col">
                     <CustomFormSelect
-                      control={auctionForm.control}
+                      control={currentForm.control}
                       name="exhibition"
                       label="exhibition"
                       placeholder="Select exhibition duration"

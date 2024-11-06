@@ -29,6 +29,7 @@ import Exhibition from "./pages/exhibition/Exhibition";
 import Auth from "./layouts/Auth";
 import AuthForm from "./pages/auth/AuthForm";
 import OtpVerification from "./pages/auth/OtpVerification";
+import Shares from "./pages/shares/Shares";
 
 // 1. Your WalletConnect Cloud project ID
 const projectId = "7a094e114d5bcd22031585b7b9c5ad5d";
@@ -114,8 +115,8 @@ function App() {
               <Route path="profile" element={<Profile />} />
             </Route>
 
-            <Route path="elites" element={<Elites />} />
-            <Route path="elites/:id" element={<Elite />} />
+            <Route path="shares" element={<Shares />} />
+            <Route path="shares/:id" element={<Shares />} />
 
             <Route path="exhibitions" element={<Exhibitions />} />
             <Route path="exhibitions/:id" element={<Exhibition />} />

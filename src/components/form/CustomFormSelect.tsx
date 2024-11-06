@@ -41,7 +41,7 @@ const CustomFormSelect = ({
               <FormLabel className="text-sm font-bold capitalize">
                 {label || splitCamelCaseToWords(name)}
               </FormLabel>
-              <SelectTrigger className="text-gray-500 bg-secondary rounded-none p-1 border h-auto focus:ring-0 focus:ring-offset-0">
+              <SelectTrigger className="text-primary/80 rounded-none p-1 border h-auto focus:ring-0 focus:ring-offset-0">
                 <SelectValue placeholder={placeholder} />
               </SelectTrigger>
 

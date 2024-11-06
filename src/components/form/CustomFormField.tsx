@@ -9,7 +9,6 @@ import {
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import { Textarea } from "../ui/textarea";
-import { Separator } from "../ui/separator";
 import { Button } from "../ui/button";
 import { useState } from "react";
 import { EyeIcon, EyeOffIcon } from "lucide-react";
@@ -65,7 +64,7 @@ const CustomFormField = ({
                     }
                     value={field.value || ""}
                     onChange={field.onChange}
-                    accepts={accepts}
+                    accept={accepts}
                   />
 
                   {name === "password" && (

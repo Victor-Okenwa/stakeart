@@ -1,4 +1,11 @@
-import { BadgeDollarSign, BarChart2, Gavel, Gem, Timer } from "lucide-react";
+import {
+  BadgeDollarSign,
+  BarChart2,
+  Gavel,
+  Gem,
+  Timer,
+  Waypoints,
+} from "lucide-react";
 import ClientInfo from "@/components/home/ClientInfo";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
@@ -28,9 +35,9 @@ const Home = () => {
       href: "/exhibitions",
     },
     {
-      label: "elites",
-      icon: Gem,
-      href: "/elites",
+      label: "shares",
+      icon: Waypoints,
+      href: "/shares",
     },
     {
       label: "leaderboards",

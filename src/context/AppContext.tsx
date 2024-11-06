@@ -9,7 +9,7 @@ interface AppContextType {
 
 // Create a default context value
 const defaultContextValue: AppContextType = {
-  balance: 5420,
+  balance: 0,
   setBalance: () => {},
   isAuth: false,
   setIsAuth: () => {},
@@ -19,8 +19,8 @@ export const AppContext = createContext(defaultContextValue);
 
 // Create a Provider component
 export const AppProvider = ({ children }: { children: React.ReactNode }) => {
-  const [balance, setBalance] = useState(0); // Default value
-  const [isAuth, setIsAuth] = useState(false);
+  const [balance, setBalance] = useState(0.0); // Default value
+  const [isAuth, setIsAuth] = useState(true);
 
   return (
     <AppContext.Provider value={{ balance, setBalance, isAuth, setIsAuth }}>

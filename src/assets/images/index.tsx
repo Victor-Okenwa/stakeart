@@ -1,8 +1,11 @@
 export { default as CoinbaseSvg } from "./coinbase-wallet.svg";
 export { default as CompHand } from "./comp-hand.jpg";
-export { default as GuitarHand } from "./guitar-hand.jpg";
+export { default as GuitarHand } from "./europeana.avif";
+// export { default as GuitarHand } from "./guitar-hand.jpg";
 export { default as GoogleIconSvg } from "./google-icon.svg";
-export { default as MicInBg } from "./mic-in-bg.jpg";
+export { default as MicInBg } from "./flowers.avif";
+// export { default as MicInBg } from "./mic-in-bg.jpg";
 export { default as MetaMaskSvg } from "./metamask-fox.svg";
-export { default as StudioPiano } from "./studio-piano.jpg";
+export { default as StudioPiano } from "./abstract-art.avif";
+// export { default as StudioPiano } from "./studio-piano.jpg";
 export { default as TrustWalletSvg } from "./trust-wallet.svg";
