@@ -1,5 +1,6 @@
 export { default as CoinbaseSvg } from "./coinbase-wallet.svg";
-export { default as CompHand } from "./comp-hand.jpg";
+export { default as CompHand } from "./paint-brush-splash.jpg";
+// export { default as CompHand } from "./comp-hand.jpg";
 export { default as GuitarHand } from "./europeana.avif";
 // export { default as GuitarHand } from "./guitar-hand.jpg";
 export { default as GoogleIconSvg } from "./google-icon.svg";

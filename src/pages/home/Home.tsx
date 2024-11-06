@@ -54,15 +54,15 @@ const Home = () => {
           <Button
             key={item.label}
             variant={"purple"}
-            className="min-h-24 min-w-24 px-5"
+            className="min-h-24 min-w-24 px-5 border-2 border-gold rounded-xl"
             asChild
           >
             <Link
               to={item.href}
               className="flex flex-col items-center gap-1 justify-center capitalize"
             >
-              {<item.icon size={50} />}
-              <span>{item.label}</span>
+              {<item.icon size={50} className="" />}
+              <span className="">{item.label}</span>
             </Link>
           </Button>
         ))}

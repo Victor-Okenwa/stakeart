@@ -19,7 +19,7 @@
 
 @layer base {
   :root {
-    --background: 0, 0%, 96%;
+    --background: 0, 0%, 99%;
     --foreground: 222.2 84% 4.9%;
 
     --purple: 260, 80%, 55%;

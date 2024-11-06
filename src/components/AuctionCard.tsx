@@ -23,15 +23,14 @@ const AuctionCard = ({
   yourBid = 0,
 }: AuctionCardProps) => {
   const auctionDate = new Date(date);
-
   return (
     <Link to={`/${type}s/${id}`}>
-      <Card className="p-0 rounded-none shadow-none">
-        <CardContent className="flex flex-col p-2 rounded-0 shadow-none">
+      <Card className="p- rounded-t-xl shadow-md overflow-hidden">
+        <CardContent className="flex flex-col p-0 shadow-none">
           <CardHeader className="flex gap-4 p-0">
-            <img src={avatar} className="w-full h-[30em]" alt="" />
-            <div className="flex flex-col justify-between text-xs">
-              <CardTitle className="text-xs capitalize text-[11px]">
+            <img src={avatar} className="w-full h-[15em] object-cover" alt="" />
+            <div className="flex flex-col justify-between pt-2 pl-3">
+              <CardTitle className="capitalize text-sm text-gold">
                 <ReduceString text={name} />
               </CardTitle>
               <CardDescription className="text-xs">
@@ -40,11 +39,11 @@ const AuctionCard = ({
             </div>
           </CardHeader>
 
-          <CardFooter className="p-0 flex flex-col h-full basis-[50%] items-end">
-            <p className="mb-auto text-xs">
+          <CardFooter className="p-2 flex flex-col h-full basis-[50%] items-end">
+            <p className="mb-auto text-sm">
               <Countdown startDateTime={auctionDate} type={type} />
             </p>
-            <p className="text-[10px] mt-auto">
+            <p className="text-[10px] mt-auto font-montserrat">
               {type === "exhibition" ? (
                 <>
                   Min Bid: <b>{convertToReadableNumber(minBid)} RWA</b>

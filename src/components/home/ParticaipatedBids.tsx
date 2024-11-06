@@ -67,13 +67,13 @@ const ParticaipatedBids = () => {
     },
   ];
   return (
-    <section className=" flex flex-col gap-2  rounded-s-2xl">
-      <h1 className="font-montserrat font-bold text-base py-2 px-3 bg-popover border-b-2">
+    <section className="mt-9 flex flex-col gap-2 rounded-t-2xl drop-shadow-2xl border-t-4">
+      <h1 className="font-montserrat font-bold text-base py-2 px-3 drop-shadow-2xl">
         Bid Participation
       </h1>
 
       {/* Build auction card and add countdown */}
-      <div className="px-4 py-4 bg-secondary flex flex-col gap-2">
+      <div className="px-4 py-4 flex flex-col gap-2 shadow-inner">
         {participation.length > 0 ? (
           participation
             .slice(0, 5)
